@@ -32,3 +32,13 @@ export async function deletePost(req: Request, res: Response): Promise<Response>
         message: 'Post deleted'
     });
 }
+
+export async function updatePost(req: Request, res: Response): Promise<Response> {
+    const postId = req.params.post_id;
+    const updatePost: Post = req.body;
+    const db = await connect();
+    await db.query('UPDATE posts SET ? WHERE id = ?', [updatePost, postId]);
+    return res.json({
+        message: 'Post updated'
+    });
+}
