@@ -10,4 +10,5 @@ export async function connect() {
         database: process.env.DB_NAME,
         connectionLimit: 10
     });
+    return connection;
 }
