@@ -1,2 +1,2 @@
 # study-typescript
-Study typescript
+typescript-study
