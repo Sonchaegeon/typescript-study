@@ -1,6 +1,9 @@
 import express, { Application } from 'express';
 import morgan from 'morgan'
-import { threadId } from 'worker_threads';
+
+// Routes
+import indexRouter from './routes/indexRoutes'
+import postRouter from "./routes/postRoutes";
 
 export class App {
     private app: Application;
@@ -9,6 +12,7 @@ export class App {
         this.app = express();
         this.settings();
         this.middlewares();
+        this.routes();
     }
 
     settings() {
@@ -17,6 +21,11 @@ export class App {
 
     middlewares() {
         this.app.use(morgan('dev'));
+    }
+
+    routes() {
+        this.app.use(indexRouter);
+        this.app.use('/posts', postRouter);
     }
 
     async listen() {
